@@ -1,0 +1,42 @@
+<html lang="en">
+<head>
+    <title>main</title>
+    <meta charset="UTF-8">
+    <style>
+        body{
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+        }
+    </style>    
+</head>
+<body>
+<div>
+    <button onclick="clicks()" id="button" data-clicks="0">Клик с паузой в секунду</button>
+</div>
+<script>
+    let button = document.getElementById('button')
+    let clicksOnButton = +button.dataset.clicks
+    let currentClick = +Date.now()
+    let currentTime = 0
+    function clicks() {
+        currentTime = +Date.now()
+        if (currentTime - currentClick < 1000) {
+            button.setAttribute("disabled", "disabled")
+            clicksOnButton = 0
+            console.log(clicksOnButton);
+            setTimeout(() => {
+                button.removeAttribute("disabled")
+            }, 1000);
+        }
+        else {
+        clicksOnButton += 1;
+        button.dataset.clicks = clicksOnButton;
+        currentClick = +Date.now()
+        console.log(clicksOnButton);
+        }
+    }
+    </script>
+</body>
+</html>

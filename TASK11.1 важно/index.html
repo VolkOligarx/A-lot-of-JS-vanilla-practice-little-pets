@@ -1,0 +1,581 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .hidden{
+            display: none;
+        }
+        .blocks{
+            display: flex;
+            gap: 10px;
+        }
+        .firstForm{
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            align-items: center;
+            width: 300px;
+        }
+        .secondForm{
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            align-items: center;
+            width: 250px;
+        }
+        .checkButton{
+            margin-top: 20px;
+        }
+        .container1{
+            margin-top: 35vh;
+            margin-bottom: 35vh;
+            margin-left: 40vw;
+            margin-right: 40vw;
+        }
+        .container2{
+            margin-top: 35vh;
+            margin-bottom: 35vh;
+            margin-left: 40vw;
+            margin-right: 40vw;
+        }
+        .h1{
+            position: absolute;
+            color: green;
+        }
+        .reset{
+            opacity: 0.4;
+        }
+        .reset:hover{
+            opacity: 1;
+        }
+    </style>
+</head>
+<body>
+    <div class="container1 hidden">
+        <form class="firstForm" action="">
+            <h2 class="h2">Введите новый ПИН-код</h2>
+            <input maxlength="6" type="text" class="save">
+            <button class="saveSend">Сохранить</button>
+        </form>
+    </div>
+    <div class="container2 hidden">
+        <form action="" class="secondForm">
+            <h2 class="secondFormH2">Введите ваш ПИН-код</h2>
+            <div class="blocks">
+
+            </div>
+            <button class="checkButton">Отправить</button>
+            <h3 onclick="reseter()" class="reset">Сбросить ПИН-код</h3>
+        </form>
+    </div>
+    <h1 class="h1 hidden">Доступ разрешен</h1>
+    <script>
+        const firstForm = document.querySelector('.firstForm')
+        const secondForm = document.querySelector('.secondForm')
+        const thirdForm = document.querySelector('.thirdForm')
+        const container1 = document.querySelector('.container1')
+        const container2 = document.querySelector('.container2')
+        const container3 = document.querySelector('.container3')
+        const checkButton = document.querySelector('.checkButton')
+        const h1 = document.querySelector('.h1')
+        let h3 = document.querySelector('.h3')
+        let block0
+        let block1
+        let block2
+        let block3
+        let block4
+        let block5
+        let password
+        let passwordChecker = []
+        const blocks = document.querySelector('.blocks')
+        if (localStorage.length == 0) {
+            container1.classList.remove('hidden')
+        let save = document.querySelector('.save')
+        let error = document.createElement('h3')
+        const button = document.querySelector('.saveSend')
+        button.disabled = true
+        save.oninput = function (event) {
+            console.log(typeof(save.value));
+            if (isNaN(save.value) && save.value !== /^(?! )(?!.* $)(?!(?:.* ){1}).+$/ || save.value == '') {
+                error.textContent = 'Введенное значение содержит недопустимые знаки. Используйте только арабские цифры'
+                firstForm.appendChild(error)
+                button.disabled = true
+            }
+            else{
+                error.remove()
+                button.disabled = false
+            }
+        }
+        firstForm.addEventListener('submit', function (event) {
+            event.preventDefault()
+            localStorage.clear()
+            let storage = save.value.split('')
+            password = Object.assign({}, storage)
+            console.log(password);
+            localStorage.setItem('password', JSON.stringify(password))
+            password = JSON.parse(localStorage.getItem('password'))
+            console.log(password);
+            container1.classList.add('hidden')
+        container2.classList.remove('hidden')
+        password = JSON.parse(localStorage.getItem('password'))
+        for (const key in password) {
+                console.log(password[key]);
+                let block = document.createElement('div')
+                let inputInBlock = document.createElement('input')
+                inputInBlock.classList.add(`block${key}`)
+                inputInBlock.style.width = '8px'
+                inputInBlock.style.height = '50px'
+                inputInBlock.style.paddingRight = '20px'
+                inputInBlock.style.paddingLeft = '20px'
+                inputInBlock.required = true
+                inputInBlock.setAttribute('maxlength', 1)
+                blocks.appendChild(block)
+                block.appendChild(inputInBlock)
+                passwordChecker.push(password[key])
+        }
+        block0 = document.querySelector('.block0')
+        block1 = document.querySelector('.block1')
+        block2 = document.querySelector('.block2')
+        block3 = document.querySelector('.block3')
+        block4 = document.querySelector('.block4')
+        block5 = document.querySelector('.block5')
+        block0.removeAttribute('maxlength')
+        block0.setAttribute('maxlength', 6)
+        let checker = []
+        block0.focus()
+        block0.oninput = function () {
+            checker = Array.from(block0.value);
+            console.log(checker);
+            if (checker.length == 2) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+            }
+            else if (checker.length == 3) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+                block2.value = checker[2]
+            }
+            else if (checker.length == 4) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+                block2.value = checker[2]
+                block3.value = checker[3]
+            }
+            else if (checker.length == 5) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+                block2.value = checker[2]
+                block3.value = checker[3]
+                block4.value = checker[4]
+            }
+            else if (checker.length == 6) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+                block2.value = checker[2]
+                block3.value = checker[3]
+                block4.value = checker[4]
+                block5.value = checker[5]
+            }
+            else if (block0.value !== '') {
+                block1.focus()
+            }
+        }
+        if (block1 !== null) {
+        block1.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block0.focus()
+            }
+        }
+        if (block2 !== null) {
+        block1.oninput = function (event) {
+            if (block1.value !== '') {
+                block2.focus()
+            }
+        }
+    }
+    }
+        if (block2 !== null) {
+        block2.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block1.focus()
+            }
+        }
+        if (block3 !== null) {
+        block2.oninput = function (event) {
+            if (block2.value !== '') {
+                block3.focus()
+            }
+        }
+        }
+    }
+        if (block3 !== null) {
+        block3.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block2.focus()
+            }
+        }
+        if (block4 !== null) {
+        block3.oninput = function (event) {
+            if (block3.value !== '') {
+                block4.focus()
+            }
+        }
+        }
+    }
+    if (block4 !== null) {
+        block4.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block3.focus()
+            }
+        }
+        if (block5 !== null) {
+        block4.oninput = function (event) {
+            if (block4.value !== '') {
+                block5.focus()
+            }
+        }
+        }
+    }
+    if (block5 !== null) {
+        block5.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block4.focus()
+            }
+        }
+        }
+        secondForm.addEventListener('submit', function (event) {
+            event.preventDefault()
+            if (passwordChecker.length == 6) {
+                if (block0.value == password[0] && block1.value == password[1] && block2.value == password[2] && block3.value == password[3] && block4.value == password[4] && block5.value == password[5]) {
+                    block0.value = ''
+                    block1.value = ''
+                    block2.value = ''
+                    block3.value = ''
+                    block4.value = ''
+                    block5.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            }
+            else if (passwordChecker.length == 5) {
+                if (block0.value == password[0] && block1.value == password[1] && block2.value == password[2] && block3.value == password[3] && block4.value == password[4]) {
+                    block0.value = ''
+                    block1.value = ''
+                    block2.value = ''
+                    block3.value = ''
+                    block4.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            }
+            else if (passwordChecker.length == 4) {
+                if (block0.value == password[0] && block1.value == password[1] && block2.value == password[2] && block3.value == password[3]) {
+                    block0.value = ''
+                    block1.value = ''
+                    block2.value = ''
+                    block3.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            }
+            else if (passwordChecker.length == 3) {
+                if (block0.value == password[0] && block1.value == password[1] && block2.value == password[2]) {
+                    block0.value = ''
+                    block1.value = ''
+                    block2.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            }
+            else if (passwordChecker.length == 2) {
+                if (block0.value == password[0] && block1.value == password[1]) {
+                    block0.value = ''
+                    block1.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            }
+            else if (passwordChecker.length == 1) {
+                if (block0.value == password[0]) {
+                    block0.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            }
+            else {
+                console.log('neverno');
+            }
+        })
+        h1.style.left = (checkButton.offsetLeft+100) + 'px'
+        h1.style.top = (checkButton.offsetTop-30) + 'px'
+    })
+    }
+    else {
+        container1.classList.add('hidden')
+        container2.classList.remove('hidden')
+        password = JSON.parse(localStorage.getItem('password'))
+        for (const key in password) {
+                console.log(password[key]);
+                let block = document.createElement('div')
+                let inputInBlock = document.createElement('input')
+                inputInBlock.classList.add(`block${key}`)
+                inputInBlock.style.width = '8px'
+                inputInBlock.style.height = '50px'
+                inputInBlock.style.paddingRight = '20px'
+                inputInBlock.style.paddingLeft = '20px'
+                inputInBlock.required = true
+                inputInBlock.setAttribute('maxlength', 1)
+                blocks.appendChild(block)
+                block.appendChild(inputInBlock)
+                passwordChecker.push(password[key])
+        }
+        block0 = document.querySelector('.block0')
+        block1 = document.querySelector('.block1')
+        block2 = document.querySelector('.block2')
+        block3 = document.querySelector('.block3')
+        block4 = document.querySelector('.block4')
+        block5 = document.querySelector('.block5')
+        block0.removeAttribute('maxlength')
+        block0.setAttribute('maxlength', 6)
+        let checker = []
+        block0.focus()
+        block0.oninput = function () {
+            checker = Array.from(block0.value);
+            console.log(checker);
+            if (checker.length == 2) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+            }
+            else if (checker.length == 3) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+                block2.value = checker[2]
+            }
+            else if (checker.length == 4) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+                block2.value = checker[2]
+                block3.value = checker[3]
+            }
+            else if (checker.length == 5) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+                block2.value = checker[2]
+                block3.value = checker[3]
+                block4.value = checker[4]
+            }
+            else if (checker.length == 6) {
+                block0.value = checker[0]
+                block1.value = checker[1]
+                block2.value = checker[2]
+                block3.value = checker[3]
+                block4.value = checker[4]
+                block5.value = checker[5]
+            }
+            else if (block0.value !== '') {
+                block1.focus()
+            }
+        }
+        if (block1 !== null) {
+        block1.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block0.focus()
+            }
+        }
+        if (block2 !== null) {
+        block1.oninput = function (event) {
+            if (block1.value !== '') {
+                block2.focus()
+            }
+        }
+    }
+    }
+        if (block2 !== null) {
+        block2.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block1.focus()
+            }
+        }
+        if (block3 !== null) {
+        block2.oninput = function (event) {
+            if (block2.value !== '') {
+                block3.focus()
+            }
+        }
+        }
+    }
+        if (block3 !== null) {
+        block3.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block2.focus()
+            }
+        }
+        if (block4 !== null) {
+        block3.oninput = function (event) {
+            if (block3.value !== '') {
+                block4.focus()
+            }
+        }
+        }
+    }
+    if (block4 !== null) {
+        block4.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block3.focus()
+            }
+        }
+        if (block5 !== null) {
+        block4.oninput = function (event) {
+            if (block4.value !== '') {
+                block5.focus()
+            }
+        }
+        }
+    }
+    if (block5 !== null) {
+        block5.onkeyup = function (event) {
+            if (event.key == 'Backspace') {
+                block4.focus()
+            }
+        }
+        }
+        secondForm.addEventListener('submit', function (event) {
+            event.preventDefault()
+            if (passwordChecker.length == 6) {
+                if (block0.value == password[0] && block1.value == password[1] && block2.value == password[2] && block3.value == password[3] && block4.value == password[4] && block5.value == password[5]) {
+                    block0.value = ''
+                    block1.value = ''
+                    block2.value = ''
+                    block3.value = ''
+                    block4.value = ''
+                    block5.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            else {
+                alert('НЕВЕРНО')
+            }
+            }
+            else if (passwordChecker.length == 5) {
+                if (block0.value == password[0] && block1.value == password[1] && block2.value == password[2] && block3.value == password[3] && block4.value == password[4]) {
+                    block0.value = ''
+                    block1.value = ''
+                    block2.value = ''
+                    block3.value = ''
+                    block4.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            else {
+                alert('НЕВЕРНО')
+            }
+            }
+            else if (passwordChecker.length == 4) {
+                if (block0.value == password[0] && block1.value == password[1] && block2.value == password[2] && block3.value == password[3]) {
+                    block0.value = ''
+                    block1.value = ''
+                    block2.value = ''
+                    block3.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            else {
+                alert('НЕВЕРНО')
+            }
+            }
+            else if (passwordChecker.length == 3) {
+                if (block0.value == password[0] && block1.value == password[1] && block2.value == password[2]) {
+                    block0.value = ''
+                    block1.value = ''
+                    block2.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            else {
+                alert('НЕВЕРНО')
+            }
+            }
+            else if (passwordChecker.length == 2) {
+                if (block0.value == password[0] && block1.value == password[1]) {
+                    block0.value = ''
+                    block1.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            else {
+                alert('НЕВЕРНО')
+            }
+            }
+            else if (passwordChecker.length == 1) {
+                if (block0.value == password[0]) {
+                    block0.value = ''
+                    h1.classList.remove('hidden')
+                    setTimeout(
+                        function () {
+                            h1.classList.add('hidden')
+                        },
+                    5000)
+            }
+            else {
+                alert('НЕВЕРНО')
+            }
+            }
+        })
+        h1.style.left = (checkButton.offsetLeft+100) + 'px'
+        h1.style.top = (checkButton.offsetTop-30) + 'px'
+    }
+    function reseter() {
+        localStorage.clear()
+        location.reload()
+    }
+    </script>
+</body>
+</html>

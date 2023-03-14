@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .content{
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+        .battery_stock{
+            display: flex;
+            gap: 10px;
+        }
+        .scale{
+            transition: all 0.3s;
+        }
+        .scale:hover{
+            transform: scale(1.05);
+            color: gold;
+        }
+        .color{
+            color: gold;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://kit.fontawesome.com/2c9349cc0a.js" crossorigin="anonymous"></script>
+    <form action="">
+        <h2>Оцените качество работы нашей зарядной станции и напишите комментарий (не менее 10 символов), пожелание каждого да будет учтено!</h2>
+    <content class="content">
+        <div class="battery_stock">
+        <i class="fa-solid fa-battery-empty scale"></i>
+        <i class="fa-solid fa-battery-quarter scale"></i>
+        <i class="fa-solid fa-battery-half scale"></i>
+        <i class="fa-solid fa-battery-three-quarters scale"></i>
+        <i class="fa-solid fa-battery-full scale"></i>
+        </div>
+        <textarea required minlength="10" name="" id="" cols="15" rows="3"></textarea>
+        <button>Оценить!</button>
+    </content>
+    </form>
+    <script>
+        const button = document.querySelector('button')
+        button.disabled = true
+        const first = document.querySelector('.fa-battery-empty')
+        const second = document.querySelector('.fa-battery-quarter')
+        const third = document.querySelector('.fa-battery-half')
+        const fourth = document.querySelector('.fa-battery-three-quarters')
+        const fifth = document.querySelector('.fa-battery-full')
+        first.onclick = function (event) {
+            first.classList.add('color')
+            second.classList.remove('color')
+            third.classList.remove('color')
+            fourth.classList.remove('color')
+            fifth.classList.remove('color')
+            button.disabled = false
+        }
+        second.onclick = function (event) {
+            first.classList.add('color')
+            second.classList.add('color')
+            third.classList.remove('color')
+            fourth.classList.remove('color')
+            fifth.classList.remove('color')
+            button.disabled = false
+        }
+        third.onclick = function (event) {
+            first.classList.add('color')
+            second.classList.add('color')
+            third.classList.add('color')
+            fourth.classList.remove('color')
+            fifth.classList.remove('color')
+            button.disabled = false
+        }
+        fourth.onclick = function (event) {
+            first.classList.add('color')
+            second.classList.add('color')
+            third.classList.add('color')
+            fourth.classList.add('color')
+            fifth.classList.remove('color')
+            button.disabled = false
+        }
+        fifth.onclick = function (event) {
+            first.classList.add('color')
+            second.classList.add('color')
+            third.classList.add('color')
+            fourth.classList.add('color')
+            fifth.classList.add('color')
+            button.disabled = false
+        }
+        const textarea = document.querySelector('textarea')
+        const form = document.querySelector('form')
+        form.addEventListener('submit', (event) => {
+            event.preventDefault()
+            if (fifth.classList.contains('color')) {
+                let result = {
+                    rating: 5,
+                    comment: textarea.value,
+                }
+                return console.log(result);
+
+            }
+            else if (fourth.classList.contains('color')) {
+                let result = {
+                    rating: 4,
+                    comment: textarea.value,
+                }
+                return console.log(result);
+            }
+            else if (third.classList.contains('color')) {
+                let result = {
+                    rating: 3,
+                    comment: textarea.value,
+                }
+                return console.log(result);
+            }
+            else if (second.classList.contains('color')) {
+                let result = {
+                    rating: 2,
+                    comment: textarea.value,
+                }
+                return console.log(result);
+            }
+            else if (first.classList.contains('color')) {
+                let result = {
+                    rating: 1,
+                    comment: textarea.value,
+                }
+                return console.log(result);
+            }
+        })
+    </script>
+</body>
+</html>

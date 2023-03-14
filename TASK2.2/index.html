@@ -1,0 +1,44 @@
+<body>
+    <h1 id="h1">fdfdgss</h1>
+</body>
+<style>
+
+</style>
+<script src="cities.js"></script>
+<script>   
+
+let latitudeArr = []
+let longitudeArr = []
+let h1 = document.getElementById('h1')
+    navigator.geolocation.getCurrentPosition(
+        function (data) {
+            let latitude = data.coords.latitude
+            let longitude = data.coords.longitude
+            for (let i = 0; i < window.cities.length; i++) {
+                if (Math.abs((+window.cities[i].lat).toFixed(5) - (latitude).toFixed(5)) <= 0.15 && Math.abs((+window.cities[i].lng).toFixed(5) - (longitude).toFixed(5)) <= 0.15) {
+                    latitudeArr.push((Math.abs(+window.cities[i].lat).toFixed(5)))
+                    longitudeArr.push((Math.abs(+window.cities[i].lng).toFixed(5)))
+                }
+            }
+            let nearLongitude = []
+            let nearLatitude = []
+            for (let i = 0; i < window.cities.length; i++) {
+                for (let z = 0; z < latitudeArr.length; z++) {
+                    if ((+window.cities[i].lat).toFixed(5) == (+latitudeArr[z]).toFixed(5)) {
+                        for (let q = 0; q < longitudeArr.length; q++) {
+                            if ((+window.cities[i].lng).toFixed(5) == (+longitudeArr[q]).toFixed(5)) {
+                                h1.textContent = window.cities[i].name
+                            }
+                            else{
+                                break
+                            }
+                        }
+                    }
+                    else {
+                        break
+                    }
+                }
+            }
+        }
+    );
+</script>

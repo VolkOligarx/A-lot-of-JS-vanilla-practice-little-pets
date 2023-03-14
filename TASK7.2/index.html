@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <header>Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum aut neque accusantium soluta minus totam perferendis vel natus animi laboriosam. Minima atque id vel quas voluptates ratione minus aliquid possimus.
+        <div class="container1">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Iure fugiat aliquam possimus dolore, ut iusto totam sint itaque eveniet dicta quo molestias, sunt libero amet vel adipisci placeat exercitationem voluptatum?</div>
+    </header>
+    <main>
+        <p><div class="container2"></div></p>
+    </main>
+    <footer>Lorem ipsum dolor sit amet consectetur adipisicing elit. Officiis itaque earum eius praesentium, enim eaque architecto, minus vero voluptates, consequuntur aut id nulla modi ipsum odit repellendus molestiae cum ratione!
+        <div>
+             <section>
+                 <div class="container3"></div>
+             </secttion>
+        </div>
+    </footer>
+    <script>
+        const button1 = document.createElement("button")
+        //let button2 = document.createElement("button")
+        //let button3 = document.createElement("button")
+        const body = document.querySelector('body')
+        button1.textContent = 'Нажми сюда!'
+        //button2.textContent = 'Нажми сюда!'
+        //button3.textContent = 'Нажми сюда!'
+        document.querySelector('.container1').appendChild(button1)
+        //document.querySelector('.container2').appendChild(button2)
+        //document.querySelector('.container3').appendChild(button3)
+        button1.classList.add('buttons')
+        //button2.classList.add('buttons')
+        //button3.classList.add('buttons')
+        button1.addEventListener('click', function () {
+            let parent = button1.parentElement
+            let h1 = document.createElement('h1')
+            h1.textContent = 'Привет, пользователь!'
+            parent.replaceChild(h1, button1)
+            setTimeout(() => {
+                document.location = 'index1.html'
+            }, 2000);
+        })
+    </script>
+</body>
+</html>

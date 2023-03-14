@@ -1,0 +1,48 @@
+<body>
+    <h1 id="h1">
+        — Доставка суши, слушаю вас!
+        — Мне Землю Франца-Иосифа, пожалуйста.
+    </h1>
+    <input id="input" type="text">
+    <button onclick="button()">Ввод</button>
+</body>
+<style>
+    body{
+        width: 100%;
+        height: 100%;
+        display: flex;
+        flex-wrap: wrap;
+        align-content: center;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column;  
+        white-space: pre-line;  
+    }
+    h1{
+        color: black;
+        padding-right: 75px;
+        padding-left: 75px;
+    }
+    input{
+        height: 35px;
+        width: 200px;
+        margin-bottom: 30px;
+    }
+    button{
+        width: 75px;
+        height: 75px;
+        transition: all 0.5s;
+    }
+    button:hover{
+        transform: scale(1.1);
+    }
+</style>
+<script>
+    //Не могу сделать что бы был перенос строки во втором анеке, не работает через \n и <pre>, как это исправить?
+    document.getElementById('input').value = '– Говорит девятый, база, ответьте, приём.\n– Это не база, это кринж, вы ошиблись частотой.'
+   function button() {
+        document.getElementById('h1').textContent = document.getElementById('input').value
+        console.log(document.getElementById('input').value);
+    }
+
+</script>

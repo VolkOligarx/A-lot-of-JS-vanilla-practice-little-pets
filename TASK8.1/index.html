@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+
+    </style>
+</head>
+<body>
+    <script>
+        let body = document.querySelector('body')
+        let input = document.createElement('input')
+        body.appendChild(input)
+        input.setAttribute('type', 'text')
+        input.onkeypress = function (event) {
+            console.log(event.keyCode);
+            if (event.keyCode == 1072 || event.keyCode == 1103 || event.keyCode == 1091 || event.keyCode == 1102 || event.keyCode == 1086 || event.keyCode == 1077 || event.keyCode == 1105 || event.keyCode == 1101 || event.keyCode == 1080 || event.keyCode == 1099)  {
+                return
+            }
+            else {
+                event.preventDefault()
+            }
+        }
+    </script>
+</body>
+</html>

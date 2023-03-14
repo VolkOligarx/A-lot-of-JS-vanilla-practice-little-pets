@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        .container{
+            display: flex;
+            gap: 10px;
+            flex-direction: column;
+            align-items: flex-start;
+        }
+        h4{
+            opacity: 0.1;
+        }
+    </style>
+</head>
+<body>
+    <form action="" class="container">
+        <input required class="login" type="text">
+        <input required class="password" type="password" name="" id="">
+        <button>SEND</button>
+    </form>
+    <h4>pass - qwerty</h4>
+    <script>
+        const container = document.querySelector('.container')
+        const login = document.querySelector('.login')
+        const password = document.querySelector('.password')
+        const button = document.querySelector('button')
+        container.addEventListener('submit', function (event) {
+            event.preventDefault()
+            const request = new XMLHttpRequest();
+            request.open('GET', './api.json')
+            request.send();
+            request.onload = function () {
+                const data = JSON.parse(request.response);
+                if (password.value === 'qwerty') {
+                    alert(data.status);
+                }
+                else if (data === undefined) {
+                    alert('miss');
+                }
+                else {
+                    alert('error');
+                }
+            }
+        })
+    </script>
+</body>
+</html>

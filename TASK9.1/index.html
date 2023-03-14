@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style></style>
+</head>
+<body>
+    <script>
+        let body = document.querySelector('body')
+        let form = document.createElement('form')
+        form.setAttribute('action', "./index.html")
+        //form.setAttribute('method', "post")
+        form.style.display = 'flex'
+        form.style.flexDirection = 'column'
+        form.style.alignItems = 'flex-start'
+        form.style.gap = '10px'
+        body.appendChild(form)
+        let login = document.createElement('input')
+        login.classList.add('login')
+        login.setAttribute('type', "text")
+        form.appendChild(login)
+        let password = document.createElement('input')
+        password.classList.add('password')
+        password.setAttribute('type', "password")
+        form.appendChild(password)
+        let button = document.createElement('button')
+        button.textContent = 'Отправить'
+        form.appendChild(button)
+        button.onclick = function (event) {
+            if (password.value == '' || login.value == '') {
+                event.preventDefault()
+            if (password.value == '' && login.value == '') {
+                password.style.borderColor = 'red'
+                login.style.borderColor = 'red'
+            }
+            else if (password.value == '') {
+                password.style.borderColor = 'red'
+                login.style.borderColor = ''
+
+            }
+            else if (login.value == '') {
+                login.style.borderColor = 'red'
+                password.style.borderColor = ''
+            }
+        }
+            else {
+                    login.style.borderColor = ''
+                    password.style.borderColor = ''
+                }
+        }
+    </script>
+</body>
+</html>

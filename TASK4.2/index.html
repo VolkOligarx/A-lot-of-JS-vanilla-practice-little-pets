@@ -1,0 +1,32 @@
+<html>
+<head>
+    <title>main</title>
+    <meta charset="UTF-8">
+</head>
+<body>
+    <main>
+        <div>
+            <div>
+                <section>
+                    <div class="iknowwhereyoulive">
+                    Клик
+                    </div>
+                </section>
+            </div>
+        </div>
+    </main>
+<script>
+   let button = document.querySelector('.iknowwhereyoulive');
+
+button.onclick = () => {
+    let parents = [];
+    
+    while (button) {
+        parents.unshift(button.nodeName.toLowerCase());
+        button = button.parentElement;
+    }
+    console.log(parents.join(' > '));
+}
+</script>
+</body>
+</html>

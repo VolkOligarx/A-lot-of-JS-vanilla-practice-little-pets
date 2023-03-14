@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let body = document.querySelector('body')
+        let form = document.createElement('form')
+        form.setAttribute('action', "./index.html")
+        form.style.display = 'flex'
+        form.style.flexDirection = 'column'
+        form.style.alignItems = 'flex-start'
+        form.style.gap = '10px'
+        body.appendChild(form)
+        let h2 = document.createElement('h2')
+        h2.textContent = 'Поставьте галочку для получения рассылки'
+        form.appendChild(h2)
+        let checkBox = document.createElement('input')
+        checkBox.setAttribute('type', "checkbox")
+        checkBox.style.width = '20px'
+        checkBox.style.height = '20px'
+        form.appendChild(checkBox)
+        let button = document.createElement('button')
+        button.textContent = 'Отправить и получать рассылку'
+        form.appendChild(button)
+        let font = 20
+        let left = 60
+        button.onclick = function (event) {
+            if (checkBox.checked == false) {
+                event.preventDefault()
+                h2.style.color = 'red'
+                h2.style.position = 'absolute'
+                if (left == 40) {
+                    left = left
+                    font = font
+                }
+                else {
+                left = left - 2
+                h2.style.top = left + 'px'
+                h2.style.left = left + 'px'
+                font = font + 10
+                h2.style.fontSize = font + 'px'
+                }
+            }
+            else {
+                return
+            }
+            
+        }
+    </script>
+</body>
+</html>

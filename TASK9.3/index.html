@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        let body = document.querySelector('body')
+        let form = document.createElement('form')
+        form.style.display = 'flex'
+        form.style.alignItems = 'flex-start'
+        form.style.flexDirection = 'column'
+        form.style.gap = '10px'
+        let men = document.createElement('input')
+        let container = document.createElement('container')
+        let subContainerMen = document.createElement('div')
+        let subContainerWomen = document.createElement('div')
+        let womenName = document.createElement('h3')
+        let menName = document.createElement('h3')
+        let women = document.createElement('input')
+        let button = document.createElement('button')
+        womenName.textContent = 'Женщина'
+        menName.textContent = 'Мужчина'
+        subContainerMen.style.display = 'flex'
+        subContainerWomen.style.display = 'flex'
+        container.style.display = 'flex'
+        container.style.gap = '20px'
+        men.setAttribute('type', "radio")
+        men.setAttribute('name', "choice")
+        men.classList.add('radio')
+        women.setAttribute('type', "radio")
+        women.setAttribute('name', "choice")
+        women.classList.add('radio')
+        button.textContent = 'Отправить'
+        body.appendChild(form)
+        form.appendChild(container)
+        container.appendChild(subContainerMen)
+        container.appendChild(subContainerWomen)
+        subContainerMen.appendChild(men)
+        subContainerMen.appendChild(menName)
+        subContainerWomen.appendChild(women)
+        subContainerWomen.appendChild(womenName)
+        form.appendChild(button)
+        button.addEventListener('click', (event) => {
+            event.preventDefault()
+		document.querySelectorAll('.radio').forEach(radio => {
+			if (radio.checked) {
+                alert(`${radio.nextElementSibling.textContent}м вход воспрещен!`)
+			}
+		})
+	})
+    </script>
+</body>
+</html>

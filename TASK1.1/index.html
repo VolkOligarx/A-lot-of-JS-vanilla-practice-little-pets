@@ -1,0 +1,55 @@
+<div class="place">
+    <button onclick="first()" class="first buttonSize">Нажми</button>
+    <button onclick="second()" class="second buttonSize">Нажми</button>
+    <button onclick="third()" class="third buttonSize">Нажми</button>
+    <style>
+        .place{
+            display: flex;
+            justify-content: space-around;
+            height: 100%;
+            width: 100%;
+            align-content: center;
+            align-items: center;
+            background-color: #000000;
+        }
+        .buttonSize{
+            height: 100px;
+            width: 100px;
+        }
+        .first{
+            background-color: black;
+            color: white;
+        }
+        .second{
+            background-color: black;
+            color: white;
+        }
+        .third{
+            background-color: black;
+            color: white;
+        }
+        .firstClick{
+            background-color: rgb(115, 5, 5);
+        }
+        .secondClick{
+            background-color: rgb(5, 115, 5);
+        }
+        .thirdClick{
+            background-color: rgb(27, 5, 115);
+        }
+    </style>
+    <script>
+        function first() {
+            let Click = document.querySelector("button.first")
+            Click.classList.add("firstClick")
+        }
+        function second() {
+            let Click = document.querySelector("button.second")
+            Click.classList.add("secondClick")
+        }
+        function third() {
+            let Click = document.querySelector("button.third")
+            Click.classList.add("thirdClick")
+        }
+    </script>
+</div>

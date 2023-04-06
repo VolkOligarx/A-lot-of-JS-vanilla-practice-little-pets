@@ -1,5 +1,12 @@
-# A-lot-of-JS-vanilla-practice-little-pets
+# A-lot-of-practice-little-pets based on JS-vanilla
 
-Just a little tasks in JS-vanilla
+#### This project contains many little widgets/pages/IDK what, as tasks durring my study that shows differenet ways of JS-vanilla logic
 
-To open some of them just comonly double click on index.html
+### Author: VolkOligarx
+
+### Lng and environment: JS-vanilla
+
+### To start just commonly double click on index.html in choosen direct
+
+
+22.06.2022
